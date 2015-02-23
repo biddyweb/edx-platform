@@ -390,6 +390,7 @@
           padding: 0;
 
           .course-title {
+            display: inline-block;
             margin-top: -($baseline/2);
 
             a,
@@ -400,18 +401,13 @@
               font-size: 34px;
               line-height: 42px;
               font-weight: 300;
-
-              &:hover,
-              &:focus {
-                text-decoration: none;
-              }
             }
           }
 
           .university,
           .date-block {
             @extend %t-copy-sub1;
-            margin: 0 0 6px;
+            margin: 0 0 6px 0;
           }
 
           .university {
