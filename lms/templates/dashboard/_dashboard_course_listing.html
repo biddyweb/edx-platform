@@ -105,20 +105,8 @@ from student.helpers import (
     % endif
 
     <section class="info">
-      <hgroup>
-        <p class="date-block">
-        % if course.has_ended():
-        ${_("Course Completed - {end_date}").format(end_date=course.end_datetime_text("DATE_TIME"))}
-        % elif course.has_started():
-        ${_("Course Started - {start_date}").format(start_date=course.start_datetime_text("DATE_TIME"))}
-        % elif course.start_date_is_still_default: # Course start date TBD
-        ${_("Course has not yet started")}
-        % else:   # hasn't started yet
-        ${_("Course Starts - {start_date}").format(start_date=course.start_datetime_text("DATE_TIME"))}
-        % endif
-        </p>
-        <h2 class="university">${get_course_about_section(course, 'university')}</h2>
-        <h3>
+      <div class="course-item-info">
+        <h3 class="course-title">
           % if show_courseware_link:
              % if not is_course_blocked:
             <a href="${course_target}">${course.display_number_with_default | h} ${course.display_name_with_default}</a>
@@ -129,7 +117,20 @@ from student.helpers import (
             <span>${course.display_number_with_default | h} ${course.display_name_with_default}</span>
           % endif
         </h3>
-      </hgroup>
+        <span class="info-university">${get_course_about_section(course, 'university')}</span>
+        <span class="info-date-block">
+        % if course.has_ended():
+        ${_("Course Completed - {end_date}").format(end_date=course.end_datetime_text("DATE_TIME"))}
+        % elif course.has_started():
+        ${_("Course Started - {start_date}").format(start_date=course.start_datetime_text("DATE_TIME"))}
+        % elif course.start_date_is_still_default: # Course start date TBD
+        ${_("Course has not yet started")}
+        % else:   # hasn't started yet
+        ${_("Course Starts - {start_date}").format(start_date=course.start_datetime_text("DATE_TIME"))}
+        % endif
+        </span>
+        
+      </div>
 
       % if course.may_certify() and cert_status:
       <%include file='_dashboard_certificate_information.html' args='cert_status=cert_status,course=course, enrollment=enrollment'/>
@@ -221,6 +222,7 @@ from student.helpers import (
       %endif
 
       % if show_courseware_link:
+        <div class="course-item-enter">
         % if course.has_ended():
          % if not is_course_blocked:
           <a href="${course_target}" class="enter-course archived">${_('View Archived Course')}</a>
@@ -234,6 +236,7 @@ from student.helpers import (
           <a class="enter-course-blocked">${_('View Course')}</a>
         % endif
         % endif
+        </div>
       % endif
 
       % if is_paid_course and show_refund_option:
