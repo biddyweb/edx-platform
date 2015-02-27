@@ -351,7 +351,7 @@
         .course-info {
           display: block;
           @include float(left);
-          width: flex-grid(6);
+          width: flex-grid(4);
           padding: 0;
           margin-top: ($baseline/2);
 
@@ -371,7 +371,7 @@
         .wrapper-course-actions {
           display: block;
           @include float(right);
-          width: flex-grid(6);
+          width: flex-grid(8);
           padding: 0;
           margin-top: ($baseline/2);
         }
@@ -385,6 +385,7 @@
 
           .action {
             @include box-sizing(border-box);
+            @include margin-right($baseline/2);
             display: inline-block;
             color: $gray-l3;
             border-radius: 3px;
@@ -402,15 +403,24 @@
               color: #808080;
               color: $gray-l4;
             }
+
+            // TYPE: facebook share
+            &.action-facebook {
+              &:hover, &:focus {
+                color: #3b5998;
+              }
+            }
+
+            // TYPE: twitter share
+            &.action-twitter {
+              &:hover, &:focus {
+                color: #55ACEE;
+              }
+            }
           }
 
           // UI: general actions dropdown layout
-
           .wrapper-action-more {
-
-            .action-more {
-              @include margin-right($baseline/2);
-            }
 
             .actions-dropdown {
               @extend %ui-no-list;
@@ -476,7 +486,6 @@
               }
             }
           }
-
         }
 
         .course-status {
