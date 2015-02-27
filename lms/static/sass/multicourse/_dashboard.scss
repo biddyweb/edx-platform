@@ -220,6 +220,7 @@
 
       .header-courses {
         @extend %t-title5;
+        @include padding-right($baseline/2);
       }
     }
 
@@ -324,32 +325,35 @@
           }
         }
 
-        .wrapper-course-info {
+        .wrapper-course-details {
           display: block;
           @include float(left);
-          width: flex-grid(5);
+          width: flex-grid(9);
           padding: 0;
           height: 120px;
         }
 
-        .course-info {
-          position: relative;
-          top: 50%;
-          transform: translateY(-50%);
+        .course-title {
+          border-bottom: 2px solid $gray-l5;
 
-          .course-title {
+          a, span {
+            @extend %t-title3;
+            @extend %t-light;
+            display: block;
+            margin-bottom: ($baseline/2);
 
-            a, span {
-              @extend %t-title3;
-              @extend %t-light;
-              display: block;
-              margin-bottom: ($baseline/2);
-
-              &:hover, &:focus {
-                text-decoration: none;
-              }
+            &:hover, &:focus {
+              text-decoration: none;
             }
           }
+        }
+
+        .course-info {
+          display: block;
+          @include float(left);
+          width: flex-grid(6);
+          padding: 0;
+          margin-top: ($baseline/2);
 
           [class*="info-"] {
             color: $gray-d1;
@@ -358,8 +362,8 @@
           }
 
           .info-date-block {
-            color: $gray-l1;
             @extend %t-title7;
+            color: $gray-l1;
             display: block;
           }
         }
@@ -367,9 +371,9 @@
         .wrapper-course-actions {
           display: block;
           @include float(right);
-          width: flex-grid(4);
+          width: flex-grid(6);
           padding: 0;
-          height: 120px;
+          margin-top: ($baseline/2);
         }
 
         .course-actions {
@@ -401,73 +405,78 @@
           }
 
           // UI: general actions dropdown layout
-          .action-more {
-            @include margin-right($baseline/2);
-          }
 
-          .actions-dropdown {
-            @extend %ui-no-list;
-            @extend %ui-depth1;
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            pointer-events: none;
-            min-width: ($baseline*6.5);
+          .wrapper-action-more {
 
-            &.is-expanded {
-              display: block;
-              pointer-events: auto;
+            .action-more {
+              @include margin-right($baseline/2);
             }
 
-            .actions-dropdown-list {
+            .actions-dropdown {
               @extend %ui-no-list;
-              @include box-sizing(border-box);
-              box-shadow: 0 1px 1px $shadow-l1;
-              position: relative;
-              width: 100%;
-              border-radius: 3px;
-              margin: ($baseline/4) 0 0 0;
-              border: 1px solid $gray-l3;
-              padding: ($baseline/2) ($baseline*0.75);
-              background: $white;
+              @extend %ui-depth1;
+              display: none;
+              position: absolute;
+              top: 100%;
+              right: 0;
+              pointer-events: none;
+              min-width: ($baseline*6.5);
 
-              // ui triangle/nub
-              &:after,
-              &:before {
-                bottom: 100%;
-                @include right(3px);
-                border: solid transparent;
-                content: " ";
-                height: 0;
-                width: 0;
-                position: absolute;
-                pointer-events: none;
+              &.is-expanded {
+                display: block;
+                pointer-events: auto;
               }
 
-              &:after {
-                border-color: $transparent;
-                border-bottom-color: $white;
-                border-width: 6px;
-                @include margin-right(1px);
+              .actions-dropdown-list {
+                @extend %ui-no-list;
+                @include box-sizing(border-box);
+                box-shadow: 0 1px 1px $shadow-l1;
+                position: relative;
+                width: 100%;
+                border-radius: 3px;
+                margin: ($baseline/4) 0 0 0;
+                border: 1px solid $gray-l3;
+                padding: ($baseline/2) ($baseline*0.75);
+                background: $white;
+
+                // ui triangle/nub
+                &:after,
+                &:before {
+                  bottom: 100%;
+                  @include right(3px);
+                  border: solid transparent;
+                  content: " ";
+                  height: 0;
+                  width: 0;
+                  position: absolute;
+                  pointer-events: none;
+                }
+
+                &:after {
+                  border-color: $transparent;
+                  border-bottom-color: $white;
+                  border-width: 6px;
+                  @include margin-right(1px);
+                }
+
+                &:before {
+                  border-color: $transparent;
+                  border-bottom-color: $gray-l3;
+                  border-width: 7px;
+                }
               }
 
-              &:before {
-                border-color: $transparent;
-                border-bottom-color: $gray-l3;
-                border-width: 7px;
-              }
-            }
+              .actions-item {
+                display: block;
+                margin: 0;
 
-            .actions-item {
-              display: block;
-              margin: 0;
-
-              &.is-hidden {
-                display: none;
+                &.is-hidden {
+                  display: none;
+                }
               }
             }
           }
+
         }
 
         .course-status {
